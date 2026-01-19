@@ -14,15 +14,15 @@ class ATM:
         print(f"-> [SMS] Your OTP code is: {otp}")
         user_otp = input("Please enter the code you received. OTP: ")
         return user_otp == otp # Check OTP
-
+    # ---------- Check balance ----------
     def check(self):
         print(f"Current balance: {self.balance} THB")
-
+    # ----------- Deposit ---------------
     def deposit(self):
         amount = float(input("Deposit amount: "))
         self.balance += amount
         print("The deposit has been completed!")
-
+    # ---------- Withdraw --------------
     def withdraw(self):
         amount = float(input("Withdraw amount: "))
         if amount <= self.balance:
@@ -31,7 +31,27 @@ class ATM:
                 print("Withdrawal successful!")
         else:
             print("Not enough balance!")
-
+     # ---------- Mobile Top_up --------------
+    def Top_up(self):
+        amount = float(input("Mobile Top_up amount: "))
+        phone_number = float(input("Phone number : "))
+        if amount <= self.balance:
+            if self.verify(): # Checking by OTP
+                self.balance -= amount
+                print("Mobile Top_up successful!")
+        else:
+            print("Not enough balance!")
+     # ---------- PromptPay -----------------
+    def transfer(self):
+        amount = float(input("Transfer amount : "))
+        phone_number = float(input("Mobile no. or ID no : "))
+        if amount <= self.balance:
+            if self.verify(): # Checking by OTP
+                self.balance -= amount
+                print("PromptPay transfer successful!")
+        else:
+            print("Not enough balance!")
+    # ---------- Pay bill------------------
     def pay_bill(self):
         amount = float(input("Specify the amount due: "))
         if amount <= self.balance:
@@ -75,7 +95,9 @@ while True:
     print("1: Check balance")
     print("2: Deposit")
     print("3: Withdraw (OTP)")
-    print("4: Pay bill (OTP)")
+    print("4: Mobile Top-up (OTP)")
+    print("5: PromptPay  (OTP)")
+    print("6: Pay bill (OTP)")
     print(f"{RED}0: Exit {RESET}")
     print()
     choice = input("Menu no.: ")
@@ -83,7 +105,9 @@ while True:
     if choice == "1": my_atm.check()
     elif choice == "2": my_atm.deposit()
     elif choice == "3": my_atm.withdraw()
-    elif choice == "4": my_atm.pay_bill()
+    elif choice == "4": my_atm.Top_up()
+    elif choice == "5": my_atm.transfer()
+    elif choice == "6": my_atm.pay_bill()
     elif choice == "0":
         print()
         print("-------------------------------------------------------")

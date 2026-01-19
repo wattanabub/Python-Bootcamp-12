@@ -1,0 +1,94 @@
+# Easy Order Pizza
+
+# Front desk
+print()
+print("---------------------------------------")
+print("---------- Welcome to Pizzio ----------")
+print("------ Have a good day with Pizza------")
+print()
+cust_name = input("What you name: ")
+print()
+print()
+print("""
+--- Available Toppings ---
+1. Hawaiian (Normal price)
+2. Pepperoni (+20 THB)
+3. Seafood (+50 THB)
+""")
+print()
+# Topping choose
+while True:
+    piz_topping_input = input("Select topping (1/2/3): ")
+    
+    if piz_topping_input in ["1", "2", "3"]:
+        break
+    else:
+        print("❌ Error: Please select only 1, 2, or 3!")
+print()
+# Size choose
+while True:
+    piz_size_input = input("What size (S, M, L): ").upper()
+    if piz_size_input in ["S", "M", "L"]:
+        break
+    else:
+        print("❌ Error: Please select only S, M, or L!")
+# Q'ty choose
+qty = int(input("How many do you want: "))
+print()
+print()
+print("---------------- Summary----------------")
+print()
+print("Hello", cust_name)
+print("Pizza Topping:", topping_name)
+print("Pizza size:", piz_size)
+print("Q'ty:", qty)
+
+# Accouting section
+base_price = 0
+topping_extra = 0
+
+## Base Price
+if piz_size == "S":
+    base_price = 200 # Size S
+elif piz_size == "M":
+    base_price = 250 # Size M
+elif piz_size == "L":
+    base_price = 300 # Size L
+else:
+    print("Invalid size of pizza")
+
+## Topping Price
+if piz_topping_input == "1":
+    topping_name = "Hawaiian"
+    topping_extra = 0
+elif piz_topping_input == "2":
+    topping_name = "Pepperoni"
+    topping_extra = 20
+elif piz_topping_input == "3":
+    topping_name = "Seafood"
+    topping_extra = 50
+else:
+    topping_name = "Unknown"
+
+# Total
+price_per_tray = base_price + topping_extra
+subtotal = price_per_tray * qty
+vat = subtotal * 0.07
+total_price = subtotal + vat
+
+# Receive
+print()
+print("----------- Tax and Receive -----------")
+print(f"Hello, {cust_name}")
+print(f"Pizza: {topping_name} ({piz_size})")
+print(f"Quantity: {qty} Tray(s)")
+print(f"Subtotal: {subtotal:.2f} THB")
+print(f"VAT (7%): {vat:.2f} THB")
+print("---------------------------------------")
+print("---------------------------------------")
+print(f"TOTAL PRICE: {total_price:.2f} THB")
+print("---------------------------------------")
+print("-------------- Thank you --------------")
+print("---------------------------------------")
+print("---------------  Pizzio ---------------")
+print("---------------------------------------")

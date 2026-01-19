@@ -1,0 +1,92 @@
+# Install Package
+import random
+
+# ATM Module
+class ATM:
+    def __init__(self, name, bank, balance=0):
+        self.name = name
+        self.bank = bank
+        self.balance = balance
+
+    # ---------- OTP Method ----------
+    def verify(self):
+        otp = str(random.randint(1000, 9999))
+        print(f"-> [SMS] Your OTP code is: {otp}")
+        user_otp = input("Please enter the code you received. OTP: ")
+        return user_otp == otp # Check OTP
+
+    def check(self):
+        print(f"Current balance: {self.balance} THB")
+
+    def deposit(self):
+        amount = float(input("Deposit amount: "))
+        self.balance += amount
+        print("The deposit has been completed!")
+
+    def withdraw(self):
+        amount = float(input("Withdraw amount: "))
+        if amount <= self.balance:
+            if self.verify(): # Checking by OTP
+                self.balance -= amount
+                print("Withdrawal successful!")
+        else:
+            print("Not enough balance!")
+
+    def pay_bill(self):
+        amount = float(input("Specify the amount due: "))
+        if amount <= self.balance:
+            if self.verify(): # Checking by OTP
+                self.balance -= amount
+                print("Payment Successful!")
+        else:
+            print("Not enough balance!")
+
+# --- Text Color ---
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+BLUE = "\033[94m"
+RED = "\033[91m"
+PURPLE = "\033[35m"
+ORANGE = "\033[38;5;208m"
+
+RESET = "\033[0m"
+
+
+# --- Operation ---
+
+print("========================================")
+print(f"   {BLUE}WELCOME TO ONLINE BANKING SYSTEM{RESET}")
+print("========================================")
+
+name = input("What you name: ")
+bank = input("Select bank (Kbank), (SCB), (TTB): ").upper()
+my_atm = ATM(name, bank, 0)
+
+print()
+print(f"\n--- {GREEN}Hello >{my_atm.name}< Welcome to {my_atm.bank} {RESET}---")
+print()
+
+# Menu
+while True:
+    print()
+    print(f"\n--- Choose one item that I can help you with.  ---")
+    print()
+    print("--- ATM Menu ---")
+    print("1: Check balance")
+    print("2: Deposit")
+    print("3: Withdraw (OTP)")
+    print("4: Pay bill (OTP)")
+    print(f"{RED}0: Exit {RESET}")
+    print()
+    choice = input("Menu no.: ")
+
+    if choice == "1": my_atm.check()
+    elif choice == "2": my_atm.deposit()
+    elif choice == "3": my_atm.withdraw()
+    elif choice == "4": my_atm.pay_bill()
+    elif choice == "0":
+        print()
+        print("-------------------------------------------------------")
+        print(f"Goodbye {name}! Thanks for coming to use our service..")
+        print("-------------------------------------------------------")
+        break

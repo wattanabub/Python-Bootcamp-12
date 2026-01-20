@@ -12,7 +12,7 @@ import requests
 import time # เพื่อให้มีการ Relay ของการดึงข้อมูล
 
 # API Key
-api_key = "live_kCPFT3hIPLP2ra0p1LfmRgQ0mCZdU60FyXIpokCeCkV82adNYIAVLMyoTZAp6BxO"
+api_key = "Please input you API Key"
 
 dog = [] # เตรียม dog ไว้ใส่ข้อมูล
 
